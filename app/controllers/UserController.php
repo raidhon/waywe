@@ -1,9 +1,6 @@
 <?php
 require_once('ic_waywe.php');
-///fdsdsd
 
-
-//xaSasa
 use Phalcon\Tag as Tag,
   Phalcon\Acl,
   Phalcon\Mvc\Model\Query;
