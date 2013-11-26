@@ -1,0 +1,167 @@
+.settings-wrapper .wrapp {
+  margin-top: 100px;
+}
+.settings-wrapper .avatar-box img {
+  border: 3px solid #c3cddb;
+  margin-bottom: 28px;
+}
+.settings-wrapper .avatar-box p {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.settings-wrapper .avatar-box input[type="file"] {
+  font-size: 11px;
+}
+.settings-wrapper .avatar-box span {
+  font-size: 11px;
+}
+.settings-wrapper a.img-delete {
+  margin-top: 20px;
+  padding-left: 8px;
+  text-decoration: underline !important;
+}
+.settings-wrapper a.img-delete:hover {
+  text-decoration: none !important;
+}
+.settings-wrapper .personal-info {
+  border-left: 1px solid #edeff1;
+  box-shadow: inset 3px 0px 4px -1px #fafafa;
+}
+.settings-wrapper .personal-info .alert {
+  margin-bottom: 50px;
+  display: inline-block;
+  font-size: 13px;
+}
+.settings-wrapper .personal-info .alert i {
+  float: left;
+}
+.settings-wrapper .personal-info h5.personal-title {
+  font-size: 22px;
+  margin: 0 0 20px 50px;
+  color: #696d73;
+  font-style: italic;
+}
+.settings-wrapper .personal-info h6.personal-title {
+  font-size: 22px;
+  margin: 40px 0 20px 0px;
+  color: #696d73;
+  font-style: italic;
+}
+.settings-wrapper .personal-info form {
+  margin-left: 50px;
+}
+.settings-wrapper .personal-info label {
+  display: inline-block;
+  float: left;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: auto;
+  width: 30%;
+  margin-right: 10px;
+  text-align: left;
+}
+.settings-wrapper .personal-info .input[type="text"] {
+  font-weight: 600;
+}
+.settings-wrapper .personal-info .ui-select {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.settings-wrapper .personal-info .actions {
+  margin-bottom: 25px;
+  margin-top: 30px;
+  width: 98%;
+  float: left;
+  text-align: right;
+}
+.settings-wrapper .personal-info .actions span {
+  text-transform: uppercase;
+  color: #7e91aa;
+  font-weight: 600;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 2px 0 8px;
+}
+.settings-wrapper .personal-info input.reset {
+  color: #7e91aa;
+  font-weight: 500;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .settings-wrapper #pad-wrapper {
+    padding: 0px 20px;
+  }
+  .settings-wrapper .avatar-box {
+    text-align: center;
+  }
+  .settings-wrapper .personal-info {
+    border: 0 none;
+    box-shadow: none;
+    margin-top: 40px;
+  }
+  .settings-wrapper .personal-info h5.personal-title {
+    margin-left: 0;
+  }
+  .settings-wrapper .personal-info .ui-select {
+    width: 90%;
+  }
+  .settings-wrapper .personal-info label {
+    width: 100%;
+  }
+  .settings-wrapper .personal-info .actions {
+    text-align: center;
+  }
+  .settings-wrapper .personal-info form {
+    margin-left: 0;
+    padding: 0px 10px 0px 10px;
+  }
+}
+
+.form-horizontal .radio {
+	margin-right: 20% !important;
+	padding-top: 2px !important;
+	padding-bottom: 3px !important;
+	min-height: 0px !important;
+	padding-left: 10px !important;
+} 
+
+.form-horizontal .alert-msg-success {
+	color: #379e48;
+	font-size: 12px;
+}
+
+.form-horizontal .alert-msg-wrong {
+	color: #c73939;
+	font-size: 12px;
+}
+
+.form-horizontal .sms-check {
+	width: 100% !important;
+	font-weight: normal !important;
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .settings-wrapper .personal-info .ui-select {
+    width: 77%;
+  }
+
+  .avatar-box {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .settings-wrapper .personal-info {
+    border-left: 0px;
+    box-shadow: none;
+  }
+  .form-horizontal .radio {
+	margin-right: 50% !important;
+	cursor: pointer;
+  } 
+}
+@media (min-width: 768px) {
+  .settings-wrapper .personal-info .alert {
+    margin-left: 50px;
+  }
+}
