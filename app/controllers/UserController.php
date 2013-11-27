@@ -7,10 +7,7 @@ use Phalcon\Tag as Tag,
 
 class UserController extends ControllerBase
 {
-	public function initialize() {
-		Tag::setTitle('Пользователь');
-		parent::initialize();
-	}
+
 	
 	public function indexAction()
 	{
