@@ -1,12 +1,16 @@
 <?php
 require_once('ic_waywe.php');
+//dsagdsa
 use Phalcon\Tag as Tag,
   Phalcon\Acl,
   Phalcon\Mvc\Model\Query;
 
 class UserController extends ControllerBase
 {
-
+	public function initialize() {
+		Tag::setTitle('Пользователь');
+		parent::initialize();
+	}
 	
 	public function indexAction()
 	{
