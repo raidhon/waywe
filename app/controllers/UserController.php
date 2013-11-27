@@ -1,6 +1,5 @@
 <?php
 require_once('ic_waywe.php');
-//dsagdsa
 use Phalcon\Tag as Tag,
   Phalcon\Acl,
   Phalcon\Mvc\Model\Query;
