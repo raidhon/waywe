@@ -22,7 +22,7 @@ class Controllers extends WayweModel
     public function initialize()
     {
 		$this->hasMany("id", "Actions", "controller", NULL);
-
-    }
+		parent::initialize();
+	}
 
 }

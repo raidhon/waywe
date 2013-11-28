@@ -59,6 +59,7 @@ class IntrusionLog extends WayweModel
     {
 		$this->belongsTo("user_id", "Users", "id", NULL);
 		$this->skipAttributesOnCreate(array('time'));
+		parent::initialize();
     }
 
 }

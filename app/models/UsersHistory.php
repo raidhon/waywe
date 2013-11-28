@@ -34,7 +34,7 @@ class UsersHistory extends WayweModel
     public function initialize()
     {
 		$this->belongsTo("user_id", "Users", "id", NULL);
-
+		parent::initialize();
     }
 
 }

@@ -29,7 +29,7 @@ class UserRole extends WayweModel
     {
 		$this->belongsTo("role_id", "Roles", "id", NULL);
 		$this->belongsTo("user_id", "Users", "id", NULL);
-
+		parent::initialize();
     }
 
 }

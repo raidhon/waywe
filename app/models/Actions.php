@@ -37,7 +37,7 @@ class Actions extends WayweModel
 		$this->hasMany("id", "RolesActions", "action", NULL);
 		$this->hasMany("id", "SysEvents", "action", NULL);
 		$this->belongsTo("controller", "Controllers", "id", NULL);
-
+		parent::initialize();
     }
 
 }

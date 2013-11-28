@@ -42,6 +42,7 @@ class Roles extends WayweModel
                     "Actions",
                     "id"
                 );
+		parent::initialize();
     }
 
 }

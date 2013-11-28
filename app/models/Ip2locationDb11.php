@@ -63,5 +63,10 @@ class Ip2locationDb11 extends WayweModel
      * @var string
      */
     public $time_zone;
-     
+
+    public function initialize()
+    {
+		parent::initialize();
+	}
+	
 }

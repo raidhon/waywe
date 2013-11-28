@@ -1,6 +1,6 @@
 <?php
 
-class Users extends wayweModel
+class Users extends WayweModel
 {
 
     /**
@@ -266,6 +266,9 @@ class Users extends wayweModel
 			
 		$this->get_loc_by_ip = "Y";
 		$this->active = "N";
-		
+
+		//print(__METHOD__ . '<br/>');
+		parent::initialize();
 	}
+
 }

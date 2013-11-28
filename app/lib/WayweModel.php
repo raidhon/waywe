@@ -62,33 +62,55 @@ class WayweModel extends \Phalcon\Mvc\Model
 	//! Имя таблицы модели
 	protected $show_name = NULL;
 	
+	/*
+	Мы можем "обременить" WayweModel::initialize загрузкой из базы всего этого счастья, только будет ли это правильным?
+	Если да, то следует пересмотреть текущий алгоритм загрузки метаданных -- и качать всё сразу. 
+	При простейшем поиске из Users выполняется _3_ таблицы. Какие -- не знаю, но выполняются )))
+	
+	Предложение 1 -- считывать всю метаинформацию в $mi_info сразу, при первой же загрузке первого наследника WayweModel
+	Предложение 2 -- "отделить овец от козлищ", скорее всего путём создания новой булевской колонки в MiTabShowNames
+	
+	Дополнение: поскольку метаинформация уже по факту переросла уровень показываемых имён, переименовать соотв. таблицы
+	и модели в MiTabs и MiCols соответственно, с исправлением всех ссылок
+	*/
+	public function initialize()
+	{
+		/*
+		Дальнейшее мы будем вызывать только в отладочных целях, впрочем -- удобно, видно, кто грузится.
+
+		$curTabName = $this->getSource();
+		printf("Method: [%s], table name: [%s]<br>\n", __METHOD__, $curTabName);
+    */
+		
+		
+		/*
+		Внимание! 
+		pre_dump(parent_method_exists($this, 'initialize'));
+		-- даёт true, но вызывать его нельзя -- судя по тексту бросаемого эксцепшна, он -- private
+		parent::initialize();
+		*/
+	}
+	
 	/**
 	Метод принудительно перегружает метаинформацию
 	Ничего не возвращает
 	*/
 	protected function mi_reload()
 	{
-        $config = $this->getDi()->getShared('config');
+		// Пока что мы пользуемся здесь $config только для получения списка именованных регекспов, но это может измениться
+		$config = $this->getDi()->getShared('config');
+		$cfgRe = $config->regexps->toArray();
 
-        print('I am here: ' . __FILE__ . '<br>');
-//        pre_dump($config);
-        //pre_dump($config->regexps->toArray());
-
-        /*
-        $vals = $colVal['validations'];
-        $curFldShowName = $colVal['show_name'];
-        */
-
-        $cfgRe = $config->regexps->toArray();
-        if(!is_array(self::$mi_info))
-			self::$mi_info = array();
+		if(!is_array(self::$mi_info))
+				self::$mi_info = array();
+			
 		$this->tab_name = $this->getSource();
-		$tabInfo = MiTabShowNames::findFirst(array("tab_name = '$this->tab_name'", "cache" => array("lifetime" => 86400, "key" => "{$this->tab_name}_id")))->toArray();
+		$tabInfo = MiTables::findFirst
+			(array("tab_name = '$this->tab_name'", "cache" => array("lifetime" => 86400, "key" => "{$this->tab_name}_id")))->toArray();
 		$this->mi_tabId = $tabInfo['id'];
 		$this->show_name = $tabInfo['show_name'];
 
-		$colInfo = MiColShowNames::find(array(
-			//"tab_id = {$tabInfo['id']}", 
+		$colInfo = MiColumns::find(array(
 			"tab_id = {$this->mi_tabId}", 
 			"columns" => 'col_name, show_name, validations',
 			"cache" => array("lifetime" => 86400, "key" => "{$this->tab_name}_fields")))->toArray();
@@ -99,29 +121,27 @@ class WayweModel extends \Phalcon\Mvc\Model
 		{
 			$colName = $curColInfo['col_name'];
 			$showColName = $curColInfo['show_name'];
+			
+			// Возможно, о такой ситуации стОит предупреждать: отсутствие человекочитаемого имени
 			if(empty($showColName))
-			{
 				$showColName = $colName;
-				//$showColName = sprintf("[%s] - Ошибка, имя для показа не определено!", $colName);
-				// Здесь мы будем логировать ошибку
-				//$error = New Errors;
-				//$error->source_line = 0;
-				//$error->error_text = "Нет записи в таблице MiColShowNames о поле $colName";
-				//$error->error_type = "Ошибка работы с моделью";
-				//$error->save();
-			}
+			
 			$aColInfo[$colName] = array('show_name' => $showColName);
+
+			// Блок обработки валидаций
 			if(!empty($curColInfo['validations'])) {
-				//$aColInfo[$colName]['validations'] = unserialize($curColInfo['validations']);
 				$aVals = unserialize($curColInfo['validations']);
+				// Блок подстановки именованных регекспов
 				if(isset($aVals['re'])) {
 					$reVal = braced($aVals['re']);
 					if(!is_null($reVal)) {
+						
+						// Проверяем, есть ли в конфиге такой именованный регексп
 						if(isset($cfgRe[$reVal]))
 							$aVals['re'] = $cfgRe[$reVal];
+						// Внештатная ситуация -- мы ссылаемся на регексп, которого нет в конфиге. Генерируем ошибку
 						else {
 							$error = New Errors;
-							$error->user_id = $session->get("id");
 							$error->source_line = __LINE__;
 							$error->error_text = __FILE__ . ' : ' . $curColInfo['col_name'] . " содержит ссылку на несуществующий регэксп в конфиге: [$reVal]";
 							$error->error_type = "Regexp error";
@@ -164,15 +184,14 @@ class WayweModel extends \Phalcon\Mvc\Model
 	
 	Fatal error: Cannot override final method Phalcon\Mvc\Model::__construct() in /home/www/waywe/app/lib/WayweModel.php on line 75
 	
-	function __construct() 
+	function __construct()
 	{
 	parent::__construct();
 	if(!self::$mi_info)
 		$this->mi_reload();
 	}
 	*/
-	
-	
+
 	/**
 	Метод является заглушкой, его код или его вызов в дальнейшем пойдёт в конструктор --
 	если мы, конечно, найдём способ создать этот конструктор или заменить его )))
@@ -236,8 +255,6 @@ class WayweModel extends \Phalcon\Mvc\Model
 	       {
 	            $vals = $colVal['validations'];
 
-
-
 	            if(isset($vals['re']))
 					$this->validate(new RegexValidator(array(
 						'field' => $colName,
@@ -269,8 +286,6 @@ class WayweModel extends \Phalcon\Mvc\Model
 						'field' => $colName,
 						'message' => sprintf('Поле \'%s\' должно быть задано.', $curFldShowName)
 						)));
-				//pre_pr($colName, $colVal['validations']);
-				//printf("Key"echo($key . '<br/>');
 			}
         }
 	}

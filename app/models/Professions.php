@@ -23,7 +23,7 @@ class Professions extends WayweModel
     {
 		$this->hasMany("id", "UserProf", "prof_id", NULL);
 		$this->hasMany("id", "Users", "prof_active", NULL);
-
+		parent::initialize();
     }
 
 }

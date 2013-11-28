@@ -64,6 +64,8 @@ class Errors extends WayweModel
 		if ($controller_model)
 			foreach ($controller_model->getActions(array("cache" => array("lifetime" => 3600, "key" => "mvc_action_" . $controller)))->toArray() as $m) 
 				if ($m["name"] == $action) $this->action = $m["id"];
+
+		parent::initialize();
     }
 
 }

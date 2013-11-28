@@ -59,7 +59,7 @@ class Notices extends WayweModel
     {
 		$this->belongsTo("creator_id", "Users", "id", NULL);
 		$this->belongsTo("user_id", "Users", "id", NULL);
-
+		parent::initialize();
     }
 
 }

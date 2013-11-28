@@ -21,5 +21,9 @@ class ReplicationTable extends WayweModel
      * @var string
      */
     public $field_name;
-     
+ 
+    public function initialize()
+    {
+		parent::initialize();
+	}
 }

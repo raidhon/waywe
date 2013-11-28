@@ -48,7 +48,7 @@ class RolesActions extends WayweModel
 		$this->belongsTo("action", "Actions", "id", NULL);
 		$this->belongsTo("creator_id", "Users", "id", NULL);
 		$this->belongsTo("role_id", "Roles", "id", NULL);
-
+		parent::initialize();
     }
 
 }

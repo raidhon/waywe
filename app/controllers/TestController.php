@@ -39,21 +39,7 @@ class TestController extends ControllerBase
 	
 	public function indexAction()
     {
-        /*
-        foreach ($this->getDI()->getServices() as $serv)
-            echo "<br>" . $serv->getName();
-		pre_pr($this->config);
-		*/
-
-        //pre_dump($this->config->regexps);
-        //['fio']
-		//require_once('wconf.php');
-		//print ('Inside ' . __FILE__ . ':<br />');
-		//pre_dump($config);
-
-		//echo "[{$wConf->}]";
-		//pre_pr($users->getTest01());
-		//pre_dump($wConf);
+		
 		/*
 		$di = new FactoryDefault();
 		$myConf = $di->get('wConf');
@@ -77,21 +63,30 @@ class TestController extends ControllerBase
 		//pre_dump($dataTypes);
     	
 		/*
-
-
 		$reAll = '/.* /i'; // лишний пробел, чтобы не было закр. комментария
 		$reValidFio = '/^[- 0-9a-zA-Z\'\.АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯІЇЄЃабвгдеёжзийклмнопрстуфхцчшщьыъэюяабвгдеёжзийклмнопрстуфхцчшщьыъэюяіїєѓ]+$/i';
 		//$reValidFio = '';
 		$reBase64 = '/^[0-9a-zA-Z\/=+]+$/i';
 		$reDate = '/^\d{4}\-\d{2}\-\d{2}$/';
-
 		*/
 		
 
+		/*
+		
+		// 2 -- id Васи
 		$user = Users::findFirst(2);
-		$user->save();
-		foreach ($user->getMessages() as $message)
-			$this->flash->error($message);
+		//pre_dump($user->toArray());
+		$user->location = '!!!';
+		// КАРАГАНДА
+		
+		$res = $user->save();
+		//pre_dump($res);
+		if(false == $res)
+			foreach ($user->getMessages() as $message)
+				$this->flash->error($message);
+		*/
+
+		//pre_dump($user->getLocalFieldNames());
 		
 		//$user->setTest(false);
 		/*

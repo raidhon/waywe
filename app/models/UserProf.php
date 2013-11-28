@@ -47,7 +47,7 @@ class UserProf extends WayweModel
     {
 		$this->belongsTo("prof_id", "Professions", "id", NULL);
 		$this->belongsTo("user_id", "Users", "id", NULL);
-
+		parent::initialize();
     }
 
 }

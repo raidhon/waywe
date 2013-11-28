@@ -120,7 +120,7 @@ class Partners extends WayweModel
     {
 		$this->hasMany("id", "Users", "partner_id", NULL);
 		$this->belongsTo("creator_id", "Users", "id", NULL);
-
+		parent::initialize();
     }
 
 }

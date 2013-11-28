@@ -311,4 +311,19 @@ if(is_string($s))
 return $res;
 }
 
+/**
+Взято из stackoverflow
+Определяет наличие метода у любого из предков данного класса
+@param[in] $object ссылка на объект (возможно, годится и имя объекта, не проверял -- надо копать method_exists, через который реализовано) 
+@param[in] $method имя метода
+*/
+function parent_method_exists($object, $method)
+{
+foreach(class_parents($object) as $parent)
+	if(method_exists($parent, $method))
+	   return true;
+return false;
+}
+
+
 ?>
