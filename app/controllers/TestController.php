@@ -71,12 +71,13 @@ class TestController extends ControllerBase
 		*/
 		
 
-		/*
+
 		
 		// 2 -- id Васи
-		$user = Users::findFirst(2);
+		//$user = Users::findFirst(2);
 		//pre_dump($user->toArray());
-		$user->location = '!!!';
+		/*
+        $user->location = '!!!';
 		// КАРАГАНДА
 		
 		$res = $user->save();
@@ -96,7 +97,7 @@ class TestController extends ControllerBase
 		
 		pre_dump($user->getLocalFieldNames());
 		*/
-		
+
 		$this->view->setVar("test","1234");
     }
     
