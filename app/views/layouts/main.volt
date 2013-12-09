@@ -44,6 +44,9 @@
                     <li><a href="new-user.html">Новый клиент</a></li>
                 </ul>
             </li>
+            <li>
+                {{ link_to('user/exit', 'Выход') }}
+            </li>
             <li class="hidden-desktop">                
                 <a class="dropdown-toggle" href="#">
                     <i class="icon-cog"></i>

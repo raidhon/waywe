@@ -200,7 +200,7 @@ class UserController extends ControllerBase
 		if ($this->request->getPost('redirTo') != "//") {
 			$this->response->redirect($this->request->getPost('redirTo'));
 		} else switch ($this->session->get('class')) {
-			case 1: $this->response->redirect("user/office"); break;
+			case 1: $this->response->redirect("test/profile"); break;
 			case 2: $this->response->redirect("user/partner"); break;
 			case 3: $this->response->redirect("user/admin"); break;
 			default: case 1: $this->response->redirect("user/office"); break;
@@ -481,15 +481,15 @@ class UserController extends ControllerBase
 	$this->view->setVar("date",$this->session->get("id"));
 	}
 
-  public function exitAction()
+    public function exitAction()
 	{
-	if ($this->cookies->has(session_name())){				// Есть ли id сессии в куках?
-	  if (false == $this->session->isStarted()) {
-		$this->session->start();
-		$this->session->destroy();				  // Чтобы не поимели подделав session_name()
-	  }
-	  $this->cookies->delete(session_name());
-	}
-	$this->view->pick("user/auth");
+		if ($this->cookies->has(session_name())){				// Есть ли id сессии в куках?
+			if (false == $this->session->isStarted()) {
+				$this->session->start();
+				$this->session->destroy();				  // Чтобы не поимели подделав session_name()
+			}
+			$this->cookies->set(session_name(),"");
+		}
+		$this->response->redirect("user/auth");
 	}
 }
