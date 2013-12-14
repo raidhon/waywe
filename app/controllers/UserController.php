@@ -197,13 +197,14 @@ class UserController extends ControllerBase
 	}
 
 	if ($auth_success || $this->session->has("id")) {
-		if ($this->request->getPost('redirTo') != "//") {
-			$this->response->redirect($this->request->getPost('redirTo'));
-		} else switch ($this->session->get('class')) {
+		//if ($this->request->getPost('redirTo') != "//") {
+		//	$this->response->redirect($this->request->getPost('redirTo'));
+		//} else
+		switch ($this->session->get('class')) {
 			case 1: $this->response->redirect("test/profile"); break;
 			case 2: $this->response->redirect("user/partner"); break;
 			case 3: $this->response->redirect("user/admin"); break;
-			default: case 1: $this->response->redirect("user/office"); break;
+			default: $this->response->redirect("user/office"); break;
 		}
 	}
 	

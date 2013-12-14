@@ -16,8 +16,8 @@
                      <i class="icon-cog"></i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="personal-info.html">Личная информация</a></li>
-                    <li><a href="signin.html">Выход</a></li>
+                    <li> {{ link_to('test/profile', 'Личная информация') }}</li>
+                    <li> {{ link_to('user/exit', 'Выход') }}</li>
                 </ul>
             </li>
         </ul>
@@ -44,10 +44,7 @@
                     <li><a href="new-user.html">Новый клиент</a></li>
                 </ul>
             </li>
-            <li>
-                {{ link_to('user/exit', 'Выход') }}
-            </li>
-            <li class="hidden-desktop">                
+            <li class="hidden-desktop">
                 <a class="dropdown-toggle" href="#">
                     <i class="icon-cog"></i>
                     <span>Настройки</span>

@@ -13,9 +13,9 @@ class IndexController extends ControllerBase
     }
     public function indexAction()
     {
-		$test = New TestController;
-		$test->indexAction();
-		print_r($this->request);
+		//$test = New TestController;
+		//$test->indexAction();
+		//print_r($this->request);
 		$this->view->setVar("date",date("Y-m-d H:i:s",strtotime("-1 minute")));		  // $test->widget("test","widget")
     }
 
